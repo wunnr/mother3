@@ -131,7 +131,7 @@ _08030E12:
 	ldrb r0, [r0]
 	lsls r0, r0, #0x19
 	lsrs r0, r0, #0x1e
-	bl getBgLayerWidth
+	bl getMapLayerWidthInPixels
 	b _08030E50
 	.align 2, 0
 _08030E38: .4byte gUnknown_02001004
@@ -140,7 +140,7 @@ _08030E40: .4byte gGame
 _08030E44: .4byte gUnknown_080C2112
 _08030E48: .4byte 0x00009D10
 _08030E4C:
-	bl sub_0801A5EC
+	bl getMapMainLayerWidthInPixels
 _08030E50:
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
@@ -225,12 +225,12 @@ _08030ED6:
 	ldrb r0, [r0]
 	lsls r0, r0, #0x19
 	lsrs r0, r0, #0x1e
-	bl getBgLayerHeight
+	bl getMapLayerHeightInPixels
 	b _08030F04
 	.align 2, 0
 _08030EFC: .4byte 0xFFFF0000
 _08030F00:
-	bl sub_0801A604
+	bl getMapMainLayerHeightInPixels
 _08030F04:
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10

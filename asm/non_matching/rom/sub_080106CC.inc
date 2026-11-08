@@ -116,7 +116,7 @@ _080107A8:
 	adds r1, r6, #0
 	bl LZ77UnCompWram
 	adds r0, r5, #0
-	bl sub_0801A650
+	bl getMapLayerTotalChunks
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #7
 	adds r6, r6, r0

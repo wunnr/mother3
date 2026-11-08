@@ -79,7 +79,7 @@ _08018A0A:
 	cmp r0, #0
 	bge _08018A44
 	adds r0, r5, #0
-	bl getBgLayerWidth
+	bl getMapLayerWidthInPixels
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10
@@ -101,7 +101,7 @@ _08018A44:
 	cmp r0, #0
 	bge _08018A72
 	adds r0, r5, #0
-	bl getBgLayerHeight
+	bl getMapLayerHeightInPixels
 	adds r4, r0, #0
 	lsls r4, r4, #0x10
 	lsrs r4, r4, #0x10

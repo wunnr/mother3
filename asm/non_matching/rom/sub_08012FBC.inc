@@ -36,7 +36,7 @@ _08012FEC:
 	ldrb r0, [r0]
 	lsls r0, r0, #0x1d
 	lsrs r0, r0, #0x1e
-	bl getBgLayerWidth
+	bl getMapLayerWidthInPixels
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x14
 	str r0, [sp, #0x14]

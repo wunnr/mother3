@@ -17,14 +17,14 @@ sub_0800DA8C:
 	ldrb r0, [r5]
 	lsls r0, r0, #0x19
 	lsrs r0, r0, #0x1e
-	bl getBgLayerWidth
+	bl getMapLayerWidthInPixels
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	str r0, [sp, #0x14]
 	ldrb r0, [r5]
 	lsls r0, r0, #0x19
 	lsrs r0, r0, #0x1e
-	bl getBgLayerHeight
+	bl getMapLayerHeightInPixels
 	mov r1, sp
 	movs r0, #0
 	strh r0, [r1]

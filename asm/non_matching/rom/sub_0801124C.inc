@@ -20,12 +20,12 @@ sub_0801124C:
 	mov r8, r3
 	lsls r4, r4, #0x10
 	lsrs r7, r4, #0x10
-	bl getBgLayerWidth
+	bl getMapLayerWidthInPixels
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x14
 	str r0, [sp, #0x14]
 	ldr r0, [sp, #4]
-	bl getBgLayerHeight
+	bl getMapLayerHeightInPixels
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x14
 	str r0, [sp, #0x18]

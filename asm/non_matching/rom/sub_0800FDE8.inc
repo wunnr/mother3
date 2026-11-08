@@ -272,11 +272,11 @@ _0800FFDA:
 	strh r3, [r4]
 	strh r3, [r4, #2]
 	adds r0, r7, #0
-	bl getBgLayerWidth
+	bl getMapLayerWidthInPixels
 	subs r0, #0xf0
 	strh r0, [r4, #4]
 	adds r0, r7, #0
-	bl getBgLayerHeight
+	bl getMapLayerHeightInPixels
 	subs r0, #0xa0
 	strh r0, [r4, #6]
 	adds r0, r7, #1
