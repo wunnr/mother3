@@ -88,7 +88,7 @@ _0801166A:
 	bl getMetatileFromTileset
 	str r0, [sp, #8]
 	ldr r0, [sp, #4]
-	bl mapCellGetSubtileIndexOrder
+	bl mapCellGetMinitileIndexOrder
 	str r0, [sp, #0x14]
 	ldr r1, [sp, #4]
 	ldr r0, [r1]

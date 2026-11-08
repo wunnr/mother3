@@ -26,7 +26,7 @@ sub_080118D0:
 	bl sub_0801AD84
 	adds r7, r0, #0
 	adds r0, r4, #0
-	bl mapCellGetSubtileIndexOrder
+	bl mapCellGetMinitileIndexOrder
 	str r0, [sp, #0xc]
 	ldr r0, [r4]
 	lsls r1, r0, #0x11
@@ -148,7 +148,7 @@ _080119EC:
 	adds r0, r4, #0
 	adds r1, r7, #0
 	adds r2, r6, #0
-	bl getSubtileFromMetatile
+	bl getMinitileFromMetatile
 	adds r2, r0, #0
 	cmp r2, #0
 	beq _08011A06
@@ -162,7 +162,7 @@ _08011A06:
 	lsrs r2, r2, #0x10
 	adds r0, r4, #0
 	adds r1, r7, #0
-	bl getSubtileFromMetatile
+	bl getMinitileFromMetatile
 	adds r2, r0, #0
 	cmp r2, #0
 	beq _08011A26

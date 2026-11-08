@@ -281,20 +281,20 @@ gDefaultMapCell:
 gDefaultMetatile:
     .incbin "baserom.gba", 0x00D2D640, 0x4
 
-    .global gMapCellSubtileOrder_HVFlipped
-gMapCellSubtileOrder_HVFlipped:
+    .global gMapCellMinitileOrder_HVFlipped
+gMapCellMinitileOrder_HVFlipped:
     .incbin "baserom.gba", 0x00D2D644, 0x4
 
-    .global gMapCellSubtileOrder_HFlipped
-gMapCellSubtileOrder_HFlipped:
+    .global gMapCellMinitileOrder_HFlipped
+gMapCellMinitileOrder_HFlipped:
     .incbin "baserom.gba", 0x00D2D648, 0x4
 
-    .global gMapCellSubtileOrder_VFlipped
-gMapCellSubtileOrder_VFlipped:
+    .global gMapCellMinitileOrder_VFlipped
+gMapCellMinitileOrder_VFlipped:
     .incbin "baserom.gba", 0x00D2D64C, 0x4
 
-    .global gMapCellSubtileOrder_Default
-gMapCellSubtileOrder_Default:
+    .global gMapCellMinitileOrder_Default
+gMapCellMinitileOrder_Default:
     .incbin "baserom.gba", 0x00D2D650, 0x4
 
     .global gUnknown_08D2D654
