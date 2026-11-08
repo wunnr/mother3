@@ -21,7 +21,7 @@ sub_0801A7CC:
 _0801A7F0: .4byte gUnknown_02000040
 _0801A7F4:
 	lsrs r0, r2, #0x10
-	bl sub_0801A61C
+	bl getBgLayerWidth
 _0801A7FA:
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10

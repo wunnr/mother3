@@ -21,7 +21,7 @@ sub_0801A868:
 _0801A88C: .4byte gUnknown_02000040
 _0801A890:
 	lsrs r0, r2, #0x10
-	bl sub_0801A638
+	bl getBgLayerHeight
 _0801A896:
 	lsls r0, r0, #0x10
 	lsrs r2, r0, #0x10
