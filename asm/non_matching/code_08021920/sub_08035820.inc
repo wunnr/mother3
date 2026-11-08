@@ -32,7 +32,7 @@ sub_08035820:
 	ldrb r0, [r0]
 	lsls r0, r0, #0x19
 	lsrs r0, r0, #0x1e
-	bl sub_0801A61C
+	bl getBgLayerWidth
 	b _08035870
 	.align 2, 0
 _08035868: .4byte gGame
@@ -106,7 +106,7 @@ _080358BE:
 	ldrb r0, [r0]
 	lsls r0, r0, #0x19
 	lsrs r0, r0, #0x1e
-	bl sub_0801A638
+	bl getBgLayerHeight
 	b _080358FC
 	.align 2, 0
 _080358F4: .4byte gGame

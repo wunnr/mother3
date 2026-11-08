@@ -16,7 +16,7 @@ sub_0800D0F0:
 	add r4, sp, #4
 	adds r0, r6, #0
 	adds r1, r4, #0
-	bl sub_08036BEC
+	bl getTilePosFromObj
 	movs r0, #0xa8
 	lsls r0, r0, #1
 	bl get_flag
@@ -179,7 +179,7 @@ _0800D24E:
 	bne _0800D280
 	adds r0, r6, #0
 	mov r1, r8
-	bl sub_08036BEC
+	bl getTilePosFromObj
 	ldrh r0, [r7]
 	mov r1, r8
 	ldrh r1, [r1]
@@ -259,7 +259,7 @@ _0800D2D8:
 _0800D2FE:
 	adds r0, r6, #0
 	mov r1, r8
-	bl sub_08036BEC
+	bl getTilePosFromObj
 	ldr r2, [sp, #0x24]
 	ldrb r0, [r2]
 	lsls r0, r0, #0x19
@@ -271,7 +271,7 @@ _0800D2FE:
 	bne _0800D338
 	adds r0, r6, #0
 	mov r1, r8
-	bl sub_08036BEC
+	bl getTilePosFromObj
 	ldrh r0, [r7]
 	mov r1, r8
 	ldrh r1, [r1]

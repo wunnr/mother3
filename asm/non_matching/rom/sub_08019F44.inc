@@ -6,7 +6,7 @@ sub_08019F44:
 	movs r1, #3
 	movs r2, #0
 	movs r3, #0
-	bl sub_08001378
+	bl GetBgLayerTilemap
 	adds r3, r0, #0
 	movs r0, #0
 _08019F58:

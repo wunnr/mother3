@@ -5,7 +5,7 @@ sub_08035AEC:
 	adds r4, r0, #0
 	add r5, sp, #4
 	adds r1, r5, #0
-	bl sub_08036BEC
+	bl getTilePosFromObj
 	bl sub_0801A5EC
 	lsls r0, r0, #0x10
 	lsrs r6, r0, #0x10

@@ -30,7 +30,7 @@ _0800F472:
 	add r4, sp, #8
 	adds r0, r7, #0
 	adds r1, r4, #0
-	bl sub_08036BEC
+	bl getTilePosFromObj
 	lsls r1, r5, #0x10
 	asrs r1, r1, #0x10
 	ldrh r0, [r4]

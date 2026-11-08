@@ -117,11 +117,11 @@ _08010266:
 	strh r5, [r4]
 	strh r5, [r4, #2]
 	adds r0, r7, #0
-	bl sub_0801A61C
+	bl getBgLayerWidth
 	subs r0, #0xf0
 	strh r0, [r4, #4]
 	adds r0, r7, #0
-	bl sub_0801A638
+	bl getBgLayerHeight
 	subs r0, #0xa0
 	strh r0, [r4, #6]
 	adds r0, r7, #1

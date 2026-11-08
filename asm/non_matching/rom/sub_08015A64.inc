@@ -98,7 +98,7 @@ _08015AE4:
 	beq _08015B40
 	adds r0, r6, #0
 	add r1, sp, #0x10
-	bl sub_08036BEC
+	bl getTilePosFromObj
 	add r0, sp, #0x10
 	bl sub_08026760
 _08015B40:

@@ -61,7 +61,7 @@ _0800623E:
 	adds r0, r4, r1
 	ldr r2, _08006284
 	adds r1, r4, r2
-	bl sub_0800724C
+	bl GfxBufferWriteBgToVram
 	ldrb r0, [r5]
 	cmp r0, #5
 	bgt _0800628C

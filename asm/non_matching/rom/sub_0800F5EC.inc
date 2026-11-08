@@ -35,7 +35,7 @@ _0800F62A:
 	add r4, sp, #0x1c
 	movs r0, #0
 	adds r1, r4, #0
-	bl sub_08036C00
+	bl getTilePosFromObjId
 	asrs r1, r5, #0x10
 	ldrh r2, [r4]
 	adds r1, r1, r2

@@ -131,7 +131,7 @@ _08030E12:
 	ldrb r0, [r0]
 	lsls r0, r0, #0x19
 	lsrs r0, r0, #0x1e
-	bl sub_0801A61C
+	bl getBgLayerWidth
 	b _08030E50
 	.align 2, 0
 _08030E38: .4byte gUnknown_02001004
@@ -225,7 +225,7 @@ _08030ED6:
 	ldrb r0, [r0]
 	lsls r0, r0, #0x19
 	lsrs r0, r0, #0x1e
-	bl sub_0801A638
+	bl getBgLayerHeight
 	b _08030F04
 	.align 2, 0
 _08030EFC: .4byte 0xFFFF0000
