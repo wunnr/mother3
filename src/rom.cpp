@@ -2341,9 +2341,24 @@ extern "C" u16 sub_0801A638(u16 index) {
     return (flags + 1) << 8;
 }
 
-extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801A650.inc", void sub_0801A650());
-extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801A678.inc", void sub_0801A678());
-extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801A694.inc", void sub_0801A694());
+extern "C" u16 getBgLayerHeight(u16 layer) {
+    u8 flags = gGame.bg_flags[layer].layerHeight;
+    return (flags + 1) << 8;
+}
+
+//extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801A650.inc", void sub_0801A650());
+extern "C" u16 sub_0801A650(u16 layer) {
+    return sub_0801A678(r0) * sub_0801A694(r0);
+}
+
+extern "C" u16 sub_0801A678(u16 layer) {
+    return gGame.bg_flags[layer].layerWidth + 1;
+}
+
+extern "C" u16 sub_0801A694(u16 layer) {
+    return gGame.bg_flags[layer].layerHeight + 1;
+}
+
 extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801A6AC.inc", void sub_0801A6AC());
 extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801A6C4.inc", void sub_0801A6C4());
 extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801A6D8.inc", void sub_0801A6D8());
@@ -2360,11 +2375,53 @@ extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801AAB0.inc", void sub_0801AAB0()
 extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801AB00.inc", void sub_0801AB00());
 extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801AB38.inc", void sub_0801AB38());
 extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801AB50.inc", void sub_0801AB50());
-extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801AD4C.inc", void sub_0801AD4C());
-extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801AD84.inc", void sub_0801AD84());
-extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801ADA0.inc", void sub_0801ADA0());
-extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801ADCC.inc", void sub_0801ADCC());
-extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801AE18.inc", void sub_0801AE18());
+extern "C" Metatile gUnknown_02000038;
+
+extern "C" Metatile* sub_0801AD4C(u16 tileset, u16 index) {
+    if (tileset >= 12 || index >= 64) {
+        return &gUnknown_02000038;
+    }
+
+    Metatile* metatiles = gGame.metatiles;
+    u32 i = ((tileset * 64 * sizeof(Metatile)) + (index * sizeof(Metatile))) / sizeof(Metatile); // (tileset * 64) + index
+    return &metatiles[i];
+}
+
+extern "C" s32* sub_0801AD84(u16 index) {
+    s32* unk = gGame._58ac;
+    return &unk[index * 2];
+}
+
+extern "C" Subtile* getSubtileFromMetatile(MapCell* cell, Metatile* metatile, u16 index){
+    u16 n = sub_0801ADCC(cell, index);
+
+    if (metatile->flags & (0x10000 << n))
+        return (Subtile*)&metatile->subtiles[n];
+    else return 0;
+}
+
+extern "C" u16 sub_0801ADCC(MapCell* cell, u16 index) {
+    if (cell->hflip && cell->vflip)
+        return gUnknown_08D2D644[index];
+    else if (cell->hflip)
+        return gUnknown_08D2D648[index];
+    else if (cell->vflip)
+        return gUnknown_08D2D64C[index];
+    else 
+        return index;
+}
+
+extern "C" u8* sub_0801AE18(MapCell* cell) {
+    if (cell->hflip && cell->vflip)
+        return gUnknown_08D2D644;
+    else if (cell->hflip)
+        return gUnknown_08D2D648;
+    else if (cell->vflip)
+        return gUnknown_08D2D64C;
+    else
+        return gUnknown_08D2D650;
+}
+
 extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801AE58.inc", void sub_0801AE58());
 extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801AF00.inc", void sub_0801AF00());
 extern "C" ASM_FUNC("asm/non_matching/rom/sub_0801AFA4.inc", void sub_0801AFA4());
