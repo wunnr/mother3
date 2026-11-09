@@ -1364,15 +1364,15 @@ extern "C" Object* get_obj_direct(u16 id) {
     return &gUnknown_0200C3C8[id];
 }
 
-extern "C" void sub_08036BEC(Object* obj, Size* sz) {
-    sz->w = obj->xpos >> 4;
-    sz->h = obj->ypos >> 4;
+extern "C" void getTilePosFromObj(Object* obj, Vector2i* pos) {
+    pos->x = obj->xpos >> 4;
+    pos->y = obj->ypos >> 4;
 }
 
-extern "C" void sub_08036C00(u16 id, Size* sz) {
+extern "C" void getTilePosFromObjId(u16 id, Vector2i* pos) {
     Object* obj = get_obj_direct(id);
-    sz->w = obj->xpos >> 4;
-    sz->h = obj->ypos >> 4;
+    pos->x = obj->xpos >> 4;
+    pos->y = obj->ypos >> 4;
 }
 
 extern "C" ASM_FUNC("asm/non_matching/code_08021920/sub_08036C24.inc", void sub_08036C24());

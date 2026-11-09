@@ -89,20 +89,20 @@ enum EquipFlags { _1, Flint, Lucas, Duster, Kumatora, Boney, Salsa, _80 };
 //     u32 battle_info;
 // };
 
-typedef struct Position {
+typedef struct Vector2u {
     u16 x;
     u16 y;
-} Position;
+} Vector2u;
 
-typedef struct Size {
-    u16 w;
-    s16 h;
-} Size;
-
-typedef struct MovementVector {
+typedef struct Vector2i {
     s16 x;
     s16 y;
-} MovementVector;
+} Vector2i;
+
+typedef struct Rectangle {
+    Vector2i pos;
+    Vector2u size;
+} Rectangle;
 
 typedef struct Object {
     s16 xpos;
@@ -115,7 +115,7 @@ typedef struct Object {
     u16 _20;
     u16 _22;
     u8 _24[0x10];
-    MovementVector* speed;
+    Vector2i* speed;
     u8 _38[4];
     u32 _3c;
     u8 _40[0x34];
@@ -240,20 +240,14 @@ typedef struct Entry8Byte_Alt {
 static_assert(sizeof(OAMEntry) == 0x8);
 
 typedef struct GraphicsBuffer {
-    /* 0x0000 / 0x0050 */ u16 _0[0x400];
-    /* 0x0800 / 0x0850 */ u16 _800[0x400];
-    /* 0x1000 / 0x1050 */ u16 _1000[0x400];
-    /* 0x1800 / 0x1850 */ u16 _1800[0x400];
+    /* 0x0000 / 0x0050 */ u16 bg[4][0x400];
     /* 0x2000 / 0x2050 */ OAMEntry oam[128];
     /* 0x2400 / 0x2450 */ u8 pad_2400[0x2500 - 0x2400];
     /* 0x2500 / 0x2550 */ Entry8Byte_Alt entries_2500[32];
     /* 0x2600 / 0x2650 */ u8 pad_2600[0x2700 - 0x2600];
     /* 0x2700 / 0x2750 */ vu16 palettes[0x20][0x10];
     /* 0x2C00 / 0x2C50 */ u8 pad_2C00[0x2C40 - 0x2B00];
-    /* 0x2C40 / 0x2C90 */ vu16 _2C40;
-    /* 0x2C42 / 0x2C92 */ vu16 _2C42;
-    /* 0x2C44 / 0x2C94 */ vu16 _2C44;
-    /* 0x2C46 / 0x2C96 */ vu16 _2C46;
+    /* 0x2C40 / 0x2C90 */ vu16 bg_dirty[4];
     /* 0x2C48 / 0x2C98 */ vu16 oam_counter;
     /* 0x2C4A / 0x2C9A */ vu16 _2C4A;
     /* 0x2C4C / 0x2C9C */ vu8 r;
@@ -817,18 +811,34 @@ typedef struct RhythmInfo {  // TODO: This should probably be part of a class?
                // effectively only the "okay" window matters
 
 typedef struct MapLayerInfo {
-    u8 layerWidth : 3;
-    u8 layerHeight : 3;
+    u8 layerWidth : 3;    // width in Chunks (16 tiles/256px)
+    u8 layerHeight : 3;   // height in Chunks (16 tiles/256px)
     u8 unk : 2;
     u8 unk1[3];
 } MapLayerInfo;
 
 typedef struct MapLayerAlphaInfo {
-    u32 unk0 : 2;
+    u32 blendMode : 2;
     u32 alpha1 : 4;
     u32 alpha2 : 4;
-    u32 unk1 : 22;
-    u8 pad[0xC];
+    u32 bldy : 4;
+    u32 target1Bg1 : 1;
+    u32 target1Bg2 : 1;
+    u32 target1Bg3 : 1;
+    u32 target1Obj : 1;
+    u32 target2Bg1 : 1;
+    u32 target2Bg2 : 1;
+    u32 target2Bg3 : 1;
+    u32 target2Obj : 1;
+    u32 mainLayer : 2;
+    u32 _3_1 : 1;
+    u32 _3_2 : 7;
+    u8 _4;
+    u8 _5_1 : 3;
+    s8 _5_8 : 1;
+    u8 _5_10 : 4;
+    u8 _6[2];
+    s16 _8[4];
     MapLayerInfo layers[3];
 } MapLayerAlphaInfo;
 
