@@ -74,15 +74,53 @@ enum Mode {
     MODE_DEBUG_MENU = 0xF
 };
 
-typedef struct BgFlags {
-    u8 _0_0 : 3;
-    u8 _0_1 : 3;
-    u8 _0_2 : 2;
-    u8 _1_0 : 2;
-    u8 _1_1 : 6;
-    u8 _2;
-    u8 _3;
-} BgFlags;
+typedef struct Minitile {
+    u8 tile : 6;
+    u8 hflip : 1;
+    u8 vflip : 1;
+} Minitile;
+
+typedef struct MetatileFlags {
+    u32 _0 : 10;
+    u32 dir : 3;
+    u32 _d : 3;
+    u32 minitilesVisible : 4;
+    u32 _14 : 3;
+    u32 speed : 3;
+    u32 _1a : 6;
+} MetatileFlags;
+
+typedef struct Metatile {
+    union {
+        u32 flags_u32;
+        MetatileFlags flags;
+    };
+    u8 minitiles[4];
+} Metatile;
+
+typedef struct MapCell {
+    u16 metatile : 6;
+    u16 tileset : 4;
+    u16 palette : 4;
+    u16 hflip : 1;
+    u16 vflip : 1;
+} MapCell;
+
+typedef struct BgLayerState {
+    Vector2u _0;
+    s16 _4;
+    s16 _6;
+    u16 _8;
+    u16 _a;
+    u16 _c;
+    u16 _e;
+    Rectangle _10;
+    u8 _18[0x34 - 0x18];
+    u8 _34;
+    u8 _35_1 : 1;
+    u8 _35_2 : 7;
+    u8 _36[0x38 - 0x36];
+} BgLayerState;
 
 struct Game {
     u8 mode;
@@ -96,7 +134,8 @@ struct Game {
     u32 _2_40 : 4;
     u32 gbPlayerModeEnabled : 1;
     u32 _3_10 : 1;
-    u32 _3_20 : 3;
+    s32 _3_20 : 1;
+    u32 _3_40 : 2;
     u32 _2_4 : 16;
     u16 _6;
     u8 collisionEnabled : 1;
@@ -108,25 +147,27 @@ struct Game {
     u8 _8_40 : 1;
     u8 _8_80 : 1;
     u8 _9;
-    u16 _a[2];
-    u8 _e;
-    u8 _f;
-    u8 _10;
-    u8 _11;
-    u8 _12[0x1c - 0x12];
-    BgFlags bg_flags[3];
+    u16 _a;
+    MapLayerAlphaInfo mapLayerInfo;
     u32 _28;
-    u8 _2c[0x595a - 0x2c];
+    u8 _2c[0x5c - 0x2c];
+    u16* mapTilemaps[3];
+    u8 _68[0x4088 - 0x68];
+    Metatile* mapMetatiles;
+    u8 _408c[0x58ac - 0x408c];
+    s32* _58ac;
+    BgLayerState mapBgLayerStates[3];
+    u8 _5958[0x595a - 0x5958];
     u8 room_enter_dir;
     u8 _595b[0x5960 - 0x595b];
     u16 _5960;
     u8 _5962[0x5978 - 0x5962];
     u16 next_room;
     u16 _597a;
-    Position room_entered_from;
+    Vector2u room_entered_from;
     u16 last_room;
     s16 _5982;
-    MovementVector _5984;
+    Vector2i _5984;
     u8 _5988[0x598C - 0x5988];
     u8 _598c_1 : 1;
     u8 _598c_2 : 1;
