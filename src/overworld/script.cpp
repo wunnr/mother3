@@ -3311,12 +3311,12 @@ u16 cmd_F0(s32* sp) {
 
 u16 cmd_F1(s32* sp) {
     u16 v1;
-    u16 v3[2];
+    Vector2u pos;
 
     v1 = scriptstack_peek(sp, 0);
-    u16* p = v3;
-    sub_0801A594(v1, v3);
-    sub_0801097C(v1, v3[0], p[1]);
+    Vector2u* p = &pos;
+    sub_0801A594(v1, &pos);
+    sub_0801097C(v1, pos.x, p->y);
     return 0;
 }
 

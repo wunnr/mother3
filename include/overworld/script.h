@@ -3,6 +3,7 @@
 
 #include "global.h"
 #include "structs.h"
+#include "overworld/map.h"
 
 #define _22_5_DEGREES 0x1000
 #define _45_DEGREES 0x2000
@@ -73,54 +74,6 @@ enum Mode {
     MODE_DROPDOWN = 0xE,
     MODE_DEBUG_MENU = 0xF
 };
-
-typedef struct Minitile {
-    u8 tile : 6;
-    u8 hflip : 1;
-    u8 vflip : 1;
-} Minitile;
-
-typedef struct MetatileFlags {
-    u32 _0 : 10;
-    u32 dir : 3;
-    u32 _d : 3;
-    u32 minitilesVisible : 4;
-    u32 _14 : 3;
-    u32 speed : 3;
-    u32 _1a : 6;
-} MetatileFlags;
-
-typedef struct Metatile {
-    union {
-        u32 flags_u32;
-        MetatileFlags flags;
-    };
-    u8 minitiles[4];
-} Metatile;
-
-typedef struct MapCell {
-    u16 metatile : 6;
-    u16 tileset : 4;
-    u16 palette : 4;
-    u16 hflip : 1;
-    u16 vflip : 1;
-} MapCell;
-
-typedef struct BgLayerState {
-    Vector2u _0;
-    s16 _4;
-    s16 _6;
-    u16 _8;
-    u16 _a;
-    u16 _c;
-    u16 _e;
-    Rectangle _10;
-    u8 _18[0x34 - 0x18];
-    u8 _34;
-    u8 _35_1 : 1;
-    u8 _35_2 : 7;
-    u8 _36[0x38 - 0x36];
-} BgLayerState;
 
 struct Game {
     u8 mode;

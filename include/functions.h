@@ -86,7 +86,6 @@ void sub_08012D50(s16);
 void sub_08012CEC(s16);
 void sub_08012830(u16, u16, s32, u32);
 void sub_08011564(u32);
-void sub_0801A594(u32, u16*);
 void sub_0801097C(u32, u32, u32);
 void sub_08033948(u16, s16);
 void sub_080332AC(u16, u16, u16);
